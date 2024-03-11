@@ -27,7 +27,7 @@ ynh_script_progression --message="Upgrading source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep="qa-config.php"
-ynh_setup_source --source_id="ldap" --dest_dir="$install_dir/qa-plugin/qa-ldap-login"
+ynh_setup_source --source_id="ldap" --dest_dir="$install_dir/qa-plugin/qa-ldap-login" --full_replace=1
 
 ynh_replace_string \
     --target_file="$install_dir/qa-include/pages/login.php" \
@@ -35,7 +35,7 @@ ynh_replace_string \
     --replace_string="require_once QA_INCLUDE_DIR . 'db/selects.php';\r\n		require_once QA_INCLUDE_DIR . '../qa-plugin/qa-ldap-login/qa-ldap-process.php';"
 
 if [ "$language" == "fr" ]; then
-    ynh_setup_source --source_id="lang_fr" --dest_dir="$install_dir/qa-lang/fr"
+    ynh_setup_source --source_id="lang_fr" --dest_dir="$install_dir/qa-lang/fr" --full_replace=1
 fi
 
 chmod 750 "$install_dir"
